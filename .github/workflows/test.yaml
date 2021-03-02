@@ -13,12 +13,6 @@ jobs:
       image: epitechcontent/epitest-docker
     steps:
       - uses: actions/checkout@v2
-      with:
-        fetch-depth: 2
-      - run: git checkout HEAD^
       - run: mkdir -p artifact
       - run: make tests_run > artifact/coverage_outputs
-      - uses: actions/upload-artifact@v2
-        with:
-         name: my-artifact
-         path: artifact/coverage_outputs.txt
+

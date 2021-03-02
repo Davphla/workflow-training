@@ -1,0 +1,17 @@
+name: Tests
+on: pull_request
+
+jobs:
+  unit_test:
+    name: tests_unitaires
+    runs-on: ubuntu-20.04
+    container:
+      image: epitechcontent/epitest-docker
+    steps:
+      - uses: actions/checkout@v2
+      - run: mkdir -p artifact
+      - run: make tests_run > artifact/coverage_outputs
+      - uses: actions/upload-artifact@v2
+       with:
+         name: my-artifact
+         path: artifact/coverage_outputs.txt
